@@ -6,11 +6,6 @@
 
 A POC on abstracting test actions into methods which can be injected to test executors as instructions towards delivery.
 
-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
-
-https://github.com/chrisenitan/modular-test-framework.git
-https://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@github.com/chrisenitan/modular-test-framework.git
-
 #### Why
 
 There are a number of UI test frameworks that attempts to simplify the process of creating test scenarios because the faster tests directly interpret to a faster delivery but most are either geared towards UI or rather still require writing a good amount of steps. For API tests, how can we achieve a low code test workflow when executing tests?
