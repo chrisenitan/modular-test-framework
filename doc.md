@@ -1,8 +1,13 @@
 # Testing with moduled test actions
 
-There is already enough code in here to piss you off so I'd not be writing so much cus I hate double wammys too. So I'll just be bulllet pointing it all but you cannot avoid my side remarks; sad you.
+## Outline
 
-This is up for review, while the code here works in practice, there might be parts of the approach that require updated design.
+-   [Architecture](#architecture)
+-   [Test Action Objects](#test-action-objects)
+-   [Key takeaways](#key-takeaways)
+- [Test Constrictor UI](#test-constructor-ui)
+
+The approach here uses object methods to define test steps, which are exported in an array of instructions that can be read by any test executor. The goal is to read and execute each step in sequence while utilizing local storage to manage whatever flow dependency might exist between steps.
 
 ## The problems with testing we are trying to solve
 
@@ -42,54 +47,67 @@ test('Create payment', () => {
     Building on the earlier idea however, we know what we need done, what if we have on test that can do all that.
 
 -   We start by identifying and building our test actions into into individual procedures.
--   We typically have `@create @capture @refund @ac @hub @webhook @dashboard` and each of these may or not have nested categories. Refunds for example has full or partial.
-    -   Each case then becomes an action identifiable with a tag initiator.
+-   Most test suites typically have `page-login, add-to-cart, call-an-endpoint, ...` depending on the product
+    -   Each case then becomes an identifiable test action
 
-This is already a familiar approach, but tests actions still are localized because we never solved the session problem. `we've been told to avoid interdependent tests`
+This is already a familiar approach, but tests actions still are localized to each test block because we never solved the session problem. `we've been told to avoid interdependent tests`
 
 -   What if we did, and every action knows just what to get for its process.
 
 ```javascript
+//old
 test('Create payment', () => {
     //this test can:
     //create valid payment
     //capture the said created payment
     //...
 })
-//but we introduce 2 new things here
 ```
 
--   Data storage: Each action uses a global storage for the resolution of its process
+```javascript
+//new
+test('Create payment', () => {
+    //this test can:
+    //go get each action
+    //for each action, run related method
+})
+//we have to introduce 2 new things here
+```
+
+-   Data storage: Each action uses a global storage for the resolution of its process, this storage also ensure we can pass dependencies between test actions
 -   Injecting each action is not hardcoded, rather can be dynamically created via a UI or array file.
 
-3. #### A chefs UI
+3. #### Test Constructor UI
 
-Tests are nothing without being repeatedly executed, executed tests are nothing without being reported. None of these are anything without a UI to manage it.
+Simplifying the test setup and execution steps only ensures we can run tests in any given order. The above approach however only abstracts the test steps, to simplify the setup of instructions for our runner, we use a simple Node-Express app which reads the available test actions and constructs a set of instructions suitable for parsing.
 
--   Now we have a warehouse of actions, we can call each one according to our preferences.
+-   Node App UI
+    -   Reads and offers a form containing all available array of actions per project
+    -   Saves user selection to file which is being read by the test runner.
 
 ### What we've done here is completely set the tests free.
 
 ## Architecture
 
 -   Test UI : Creates and customizes a sequence of supported actions
--   Global helpers : Api requests and other main actors; loggers... : `objects`
+-   Global helpers : Translators and other main actors; loggers... : `objects methods or classes`
     -   Actor : Executes given test actions
-    -   Translator : Changes tags to predefined objects.
+    -   Translator : Changes tags to predefined methods.
     -   Memory
         -   Sorts and retrieves current test session dependencies
         -   Stores an array of instructions
 -   Test actions: Methods containing action organizers : `objects`
--   A test block : Test execution : `mocha`
+-   A test block : Parse through each action with given command flow : `mocha`
 
 ### Sample Flow
 
--   The UI reads and provides a set of actors available
+-   The UI reads and provides a set of test actions available
     -   Creates a simple array of tags with selections
--   Th test block reads a set of instruction tags from the UI array file
--   Calls the translator to parse which action to perform, defined as methods
--   The actor then calls the session tree to find data related to completing its action
-    -   Then executes and if necessary, exports the result back to memory node.
+-   Using the global helper
+    -   The test block reads a set of instruction tags from the UI array file
+    -   Calls the translator to parse which action to perform, defined as methods
+    -   The actor then calls the session tree to find data related to completing its action
+        -   Then executes and if necessary, exports the result back to memory node.
 
 ```mermaid
 flowchart TB
@@ -107,11 +125,11 @@ GlobalHelper <--> |5. Fetch & Feed|MEMORY
 MEMORY --> MEMORY-OBJECT-DESIGN
 
 subgraph MEMORY-OBJECT-DESIGN
-        TRANSACTIONS --> |Transaction States|PAYMENT
+        TRANSACTIONS --> |Transaction States|COFFEE
         TRANSACTIONS --> |Transaction States|...
-        PAYMENT --> |Objects|PENDING
-        PAYMENT --> |Objects|CAPTURED
-        PAYMENT --> |Objects|....
+        COFFEE --> |Objects|ORDER
+        COFFEE --> |Objects|PAY
+        COFFEE --> |Objects|....
     end
 ```
 
@@ -121,13 +139,3 @@ subgraph MEMORY-OBJECT-DESIGN
     -   We don't have to worry about interdependent tests, if the test fails because data is not available, then we have found our bug.
 -   The UI is built on available nodes in each action tree.
     -   Since each action can be anything, we can use functions that take args
-
-### Lets see this in action
-
--   Demo is an abstract from the current SEPA tests, we built on top of that only. What we need/have:
-    -   A collection of test helper objects, smart enough to do stuff. Sepa
-    -   A digital file manipulation function to keep sessions in place. Sepa
-    -   A translator sample: Assertion.
--   One thing left: The UI. Node-Express
-
-I should say that the reason why I did this is not really to show you a fancy click buttons and select fields in tests but to get you thinking about tests in a different way... To get you to see tests not just as this blob long script of things the CPU needs to do duh but a living entity that can be alive and change to the day and mood of the software that; thanks to you all is ever evolving
