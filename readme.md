@@ -79,3 +79,9 @@ test(`Moduled`, async () => {
 -   Start the UI app with `npm start`
     -   Configure a scenario
 -   Run tests with command provided in UI or with `npm run test`
+
+
+## Credits
+- Icons [Module icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/module")
+- Pictures Pexels 
+    - ...

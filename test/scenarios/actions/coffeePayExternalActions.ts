@@ -20,6 +20,14 @@ const coffeePayExternalActions = {
 
         attributes.functionMessage = 'Coffee paid for, pick up next'
         return attributes
+    },
+
+    submitFeedback: async () => {
+        //more product logic
+    },
+
+    getAnExtraCup: async () => {
+        //more product logic
     }
 }
 

@@ -40,7 +40,7 @@ appRoute.post('/', (req, res) => {
     console.log(newActionRequest)
 
     Object.assign(result, {
-        primaryMessage: 'Your test scenario was created',
+        primaryMessage: 'Your test scenario was created. Run `npm test`',
         ...req.content
     })
     res.render('index', result)

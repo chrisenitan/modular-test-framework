@@ -1,30 +1,34 @@
 <!DOCTYPE html lang="en">
 <html>
-    <head>
-        {{> header}}
-        <title>Test Main</title>
-    </head>
 
-    <body>
-        <div id="page">
-            <form method="post" action="/">
-                <select name="apms">
-                    {{#apps}}
-                    <option>{{.}}</option>
-                    {{/apps}}
-                </select>
+<head>
+    {{> header}}
+    <title>modular test index</title>
+</head>
 
-                <select name="actions" multiple="true">
-                    {{#coffee}}
-                    <option>{{.}}</option>
-                    {{/coffee}}
-                </select>
+<body>
+    <div id="page">
+        <form method="post" action="/">
+            <h4>Test Suite</h4>
+            <select name="apps">
+                {{#apps}}
+                <option>{{.}}</option>
+                {{/apps}}
+            </select>
+            <br>
+            <h2>Available Test Actions</h2>
+            <select name="actions" multiple="true" id="actionsList">
+                {{#coffee}}
+                <option>{{.}}</option>
+                {{/coffee}}
+            </select>
 
-                <br />
-                <button>Create Scenario</button>
-            </form>
+            <br>
+            <button>Create Scenario</button>
+        </form>
 
-            {{primaryMessage}}
-        </div>
-    </body>
+        {{primaryMessage}}
+    </div>
+</body>
+
 </html>

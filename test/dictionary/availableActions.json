@@ -1,4 +1,4 @@
 {
     "apps": ["coffeePay"],
-    "coffee": ["chooseFavCoffee", "payForCoffee"]
+    "coffee": ["chooseFavCoffee", "payForCoffee", "submitFeedback", "getAnExtraCup"]
 }
