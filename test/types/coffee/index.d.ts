@@ -1,8 +1,11 @@
 type resolveType = {
+    transactionType: string
     uniqueId: string
     coffeeName: string
-    coffeeLastOdered: string
+    coffeeLastOrdered: string
     coffeeTotalOrdered: string
     functionMessage: string
     meta: Record<string, any>
 }
+
+type paymentTransaction = Record<string, Record<string, unknown>>

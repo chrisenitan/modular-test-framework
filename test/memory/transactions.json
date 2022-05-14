@@ -1,1 +1,1 @@
-{"coffeeName":"deus","coffeeLastOdered":"10-12-2022","coffeeTotalOrdered":"1234","uniqueId":"some-rand-id"}
+{"coffeeOrder":{"coffeeName":"deus","coffeeLastOrdered":"10-12-2022","coffeeTotalOrdered":"1234","uniqueId":"some-rand-id","transactionType":"coffeeOrder"}}

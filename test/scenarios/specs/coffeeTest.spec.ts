@@ -2,18 +2,16 @@ import { globalHelper } from '../../helper'
 
 describe('TEST IN MODULES', () => {
     it(`Test Scenario`, async () => {
-        const actions = globalHelper.getActions('coffeePay')
+        const actions = globalHelper.getActions('coffeeDojo')
         for (const element of actions) {
             const currentAction = globalHelper.translateAction(element)
 
             const attributes = globalHelper.readTransaction()
 
-            const { functionMessage, coffeeName, coffeeLastOdered, coffeeTotalOrdered, uniqueId } = await globalHelper.executeAction(
-                attributes,
-                currentAction
-            )
+            const { functionMessage, coffeeName, coffeeLastOrdered, coffeeTotalOrdered, uniqueId, transactionType } =
+                await globalHelper.executeAction(attributes, currentAction)
 
-            globalHelper.writeTransaction({ coffeeName, coffeeLastOdered, coffeeTotalOrdered, uniqueId })
+            globalHelper.writeTransaction({ coffeeName, coffeeLastOrdered, coffeeTotalOrdered, uniqueId, transactionType })
 
             console.log(`${functionMessage}: ${coffeeName} : ${uniqueId}`)
         }

@@ -1,7 +1,7 @@
-import { coffeePayInternalActions } from './coffeePayInternalActions'
-import { coffeePayExternalActions } from './coffeePayExternalActions'
+import { coffeePayInternalActions } from './coffeeDojoInternalActions'
+import { coffeePayExternalActions } from './coffeeDojoExternalActions'
 
-export const coffeePay = {
+export const coffeeDojo = {
     ...coffeePayInternalActions,
     ...coffeePayExternalActions
 }

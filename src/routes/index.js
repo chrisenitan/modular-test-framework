@@ -31,7 +31,7 @@ appRoute.post('/', (req, res) => {
 
     //create request
     const newActionRequest = {
-        [`${req.body.apms}`]: newRequest
+        [`${req.body.apps}`]: newRequest
     }
 
     //save new request to file

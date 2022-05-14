@@ -1,4 +1,4 @@
 {
-    "apps": ["coffeePay"],
-    "coffee": ["chooseFavCoffee", "payForCoffee", "submitFeedback", "getAnExtraCup"]
+    "apps": ["coffeeDojo"],
+    "coffeeDojo": ["chooseFavCoffee", "payForCoffee", "submitFeedback", "getAnExtraCup"]
 }

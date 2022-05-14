@@ -27,11 +27,11 @@ export const globalHelper = {
     },
 
     writeTransaction: (request: Record<string, any>) => {
-        //how you store the records is up to you
+        //how you store the records is up to you. here we store the record based on id of each transaction for easier referencing
         const content = JSON.parse(readFileSync(transactionDataFilePath, 'utf-8'))
         const updates = {
             ...content,
-            ...request
+            [`${request.transactionType}`]: { ...request }
         }
         writeFileSync(transactionDataFilePath, JSON.stringify(updates))
     },
