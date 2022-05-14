@@ -1,7 +1,7 @@
 import { globalHelper } from '../../helper'
 
 describe('TEST IN MODULES', () => {
-    it(`Test Scenario`, async () => {
+    it(`Scenario`, async () => {
         const actions = globalHelper.getActions('coffeeDojo')
         for (const element of actions) {
             const currentAction = globalHelper.translateAction(element)
