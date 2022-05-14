@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "dist/.test",
+        "target": "ESNext",
+        "module": "CommonJS",
+        "rootDir": "test",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "checkJs": false,
+        "sourceMap": true,
+        "outDir": "dist",
+        "importHelpers": false,
+        "removeComments": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "typeRoots": ["test/types", "./node_modules/@types"]
+    },
+    "exclude": ["node_modules/**/*", "scripts/*"],
+    "include": ["test/**/*.ts", "test/scenarios/specs/**.spec.ts"]
+}

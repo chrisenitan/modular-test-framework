@@ -1,0 +1,30 @@
+<!DOCTYPE html lang="en">
+<html>
+    <head>
+        {{> header}}
+        <title>Test Main</title>
+    </head>
+
+    <body>
+        <div id="page">
+            <form method="post" action="/">
+                <select name="apms">
+                    {{#apps}}
+                    <option>{{.}}</option>
+                    {{/apps}}
+                </select>
+
+                <select name="actions" multiple="true">
+                    {{#coffee}}
+                    <option>{{.}}</option>
+                    {{/coffee}}
+                </select>
+
+                <br />
+                <button>Create Scenario</button>
+            </form>
+
+            {{primaryMessage}}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+{
+    "name": "testmodulesminiapp",
+    "version": "1.0.0",
+    "description": "Front facing app for testmodules POC",
+    "main": "index.js",
+    "type": "module",
+    "author": "Chris Enitan",
+    "license": "ISC"
+}

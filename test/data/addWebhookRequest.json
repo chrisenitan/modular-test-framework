@@ -1,0 +1,25 @@
+{
+    "url": "",
+    "active": true,
+    "headers": {
+        "authorization": "9876"
+    },
+    "content_type": "json",
+    "event_types": [
+        "payment_approved",
+        "payment_pending",
+        "payment_declined",
+        "payment_expired",
+        "payment_canceled",
+        "payment_voided",
+        "payment_void_declined",
+        "payment_captured",
+        "payment_capture_declined",
+        "payment_capture_pending",
+        "payment_refunded",
+        "payment_refund_declined",
+        "payment_refund_pending",
+        "payment_chargeback",
+        "payment_retrieval"
+    ]
+}
