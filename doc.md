@@ -5,7 +5,7 @@
 -   [Architecture](#architecture)
 -   [Test Action Objects](#test-action-objects)
 -   [Key takeaways](#key-takeaways)
-- [Test Constrictor UI](#test-constructor-ui)
+-   [Test Constrictor UI](#test-constructor-ui)
 
 The approach here uses object methods to define test steps, which are exported in an array of instructions that can be read by any test executor. The goal is to read and execute each step in sequence while utilizing local storage to manage whatever flow dependency might exist between steps.
 
@@ -111,22 +111,20 @@ Simplifying the test setup and execution steps only ensures we can run tests in 
 
 ```mermaid
 flowchart TB
-GlobalHelper[GLOBAL TEST HELPERS : APM-HELPER]
-GlobalHelper <--> |4. Act & Feed|HELPER[HELPER]
-TEST <--> |2. Translate, log...|GlobalHelper
-UI <--> |1. Fetch & Insert...|GlobalHelper
+GlobalHelper[GLOBAL FRAMEWORK HELPER]
+GlobalHelper <--> |3. Act & Feed|HELPER[HELPER]
+TEST <--> |2 & 5 Translate, Instantiate, log...|GlobalHelper
+UI-CONSTRUCTOR <--> |1. Fetch & Record actions|MEMORY
 
-    style HELPER width:360px,margin-bottom:100px,stroke-width:4px
-HELPER[INDIVIDUAL and INTERCOMMUNICATIVE ACTORS]
-HELPER <--> |3. Actions|TEST
+    style HELPER width:320px,margin-bottom:100px,stroke-width:4px
+HELPER[INTERNAL - INTERCOMMUNICATIVE ACTORS]
 
-GlobalHelper <--> |5. Fetch & Feed|MEMORY
+GlobalHelper <--> |4. Fetch & Feed|MEMORY
 
 MEMORY --> MEMORY-OBJECT-DESIGN
 
 subgraph MEMORY-OBJECT-DESIGN
-        TRANSACTIONS --> |Transaction States|COFFEE
-        TRANSACTIONS --> |Transaction States|...
+        TRANSACTIONS --> |Transaction Type|COFFEE
         COFFEE --> |Objects|ORDER
         COFFEE --> |Objects|PAY
         COFFEE --> |Objects|....
