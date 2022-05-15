@@ -1,8 +1,6 @@
 # A Modular Test Framework
 
-### Introduction
-
-A test framework that abstracts test actions into methods which can be injected to test executors as instructions towards preferred delivery.
+Abstracted instruction based test actions methods which can be injected to test runners using local file system and session management.
 
 #### In Abstract
 
@@ -80,11 +78,12 @@ test(`Moduled`, async () => {
 })
 ```
 
-
 ### setup app ui
+
 ![mocha test result](src/public/images/appUi.png)
 
 ### sample test result
+
 ![mocha test result](src/public/images/testResult.png)
 
 ## Credits
