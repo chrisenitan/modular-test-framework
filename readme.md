@@ -1,12 +1,10 @@
 # A Modular Test Framework
 
-`work in progress`
-
 ### Introduction
 
 A test framework that abstracts test actions into methods which can be injected to test executors as instructions towards preferred delivery.
 
-#### Abstract
+#### In Abstract
 
 There are a number of UI test frameworks that attempts to simplify the process of creating test scenarios because the faster tests directly interpret to a faster delivery but most are either geared towards UI applications or rather still require writing a good amount of scenario steps. This framework helps achieve a low code test workflow by moving all your test actions into a defined set of instructions that can be executed by any test runner.
 
@@ -16,7 +14,7 @@ There are a number of UI test frameworks that attempts to simplify the process o
 
 ## Resources
 
--   Complete apprroach documentation [doc.md](doc.md)
+-   Complete approach documentation [doc.md](doc.md)
 -   101 on Medium Post
 
 ## Stack
@@ -26,9 +24,17 @@ There are a number of UI test frameworks that attempts to simplify the process o
 -   Express JS
 -   Mustache
 
-## Outline
+## Setup
 
-### Define and export your apm actions methods
+-   Clone project
+-   Install package dependencies from the root directory `npm install`
+-   Start the UI app with `npm start`
+    -   Configure a scenario
+-   Run tests with command provided in UI or with `npm run test`
+
+## Code samples
+
+### Define and export your coffee actions methods
 
 ```javascript
 {
@@ -49,7 +55,7 @@ There are a number of UI test frameworks that attempts to simplify the process o
 
 ```json
 {
-    "your_apm": ["loginToPage"]
+    "your_app_name": ["loginToPage"]
 }
 ```
 
@@ -61,29 +67,27 @@ test(`Moduled`, async () => {
     const actions = helper.getActions('your_app_name')
 
     for (const element of actions) {
-        //parse each action array as you defined apm methods
+        //parse each action array as you defined test methods
         const currentAction = helper.translateAction(element)
         //fetch existing test session data
         const attributes = helper.readTransaction()
         //execute each action
-        const { functionMessage, id, status, apm } = await helper.executeAction(attributes, currentAction)
+        const { functionMessage, id, status, appStep } = await helper.executeAction(attributes, currentAction)
         //export resolutions to test session
-        helper.writeTransaction({ id, status, apm })
+        helper.writeTransaction({ id, status, appStep })
         //...other extensions: global assertions, reporting...
     }
 })
 ```
 
-## Setup
 
--   Clone project
--   Install package dependencies from the root directory `npm install`
--   Start the UI app with `npm start`
-    -   Configure a scenario
--   Run tests with command provided in UI or with `npm run test`
+### setup app ui
+![mocha test result](src/public/images/appUi.png)
+
+### sample test result
+![mocha test result](src/public/images/testResult.png)
 
 ## Credits
 
 -   Icons [Module icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/module")
--   Pictures Pexels
-    -   ...
+-   Pictures [Unsplash](https://unsplash.com/s/photos/order?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

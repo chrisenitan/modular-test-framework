@@ -12,8 +12,8 @@ export const globalHelper = {
     },
 
     translateAction: (action: keyof typeof actions) => {
-        const apmAction = actions[`${action}`]
-        return apmAction
+        const coffeeAction = actions[`${action}`]
+        return coffeeAction
     },
 
     executeAction: async (attributes: resolveType, callback: any) => {
@@ -35,6 +35,7 @@ export const globalHelper = {
         }
         writeFileSync(transactionDataFilePath, JSON.stringify(updates))
     },
+    
     tearDown: () => {
         //can be in a after test hook
         const updates = {}
