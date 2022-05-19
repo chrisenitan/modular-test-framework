@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/', [customModules.urlLog, customModules.pageDefault], appRoute)
 
 //server
-const port = process.env.port || 8080
+const port = process.env.port || 8180
 app.listen(port, () => {
     console.log(`\x1b[32mTest UI on http://localhost:${port} \x1b[0m  \n`)
 })

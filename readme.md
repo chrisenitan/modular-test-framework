@@ -1,6 +1,6 @@
 # A Modular Test Framework
 
-Abstracted instruction based test actions methods which can be injected to test runners using local file system and session management.
+Abstracted instruction based test action methods which can be injected to test runners using local file system and session management.
 
 #### In Abstract
 
@@ -17,10 +17,10 @@ There are a number of UI test frameworks that attempts to simplify the process o
 
 ## Stack
 
--   Typescript
--   Mocha
--   Express JS
--   Mustache
+-   [Typescript](https://github.com/microsoft/TypeScript)
+-   [Mocha](https://github.com/mochajs/mocha)
+-   [Express JS](https://github.com/expressjs/express)
+-   [Mustache](https://github.com/janl/mustache.js/)
 
 ## Setup
 
@@ -32,7 +32,7 @@ There are a number of UI test frameworks that attempts to simplify the process o
 
 ## Code samples
 
-### Define and export your coffee actions methods
+### Define and export your test actions methods
 
 ```javascript
 {
